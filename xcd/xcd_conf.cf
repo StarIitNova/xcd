@@ -1,0 +1,4 @@
+dev=C:\dev
+bin=C:\bin
+usr=%%APPDATA%%\..\..\
+~=%%APPDATA%%\..\..\
