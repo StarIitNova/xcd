@@ -2,3 +2,6 @@
 *.exe
 xcd-a.*
 xcd-a
+
+# config files
+xcd/
