@@ -70,29 +70,29 @@ std::string rightPadStr(std::string s, int count, std::string with = " ", int rs
 void displayDir();
 
 bool changeDirectory(std::string dir) {
-    std::cout << "[xcd][DEBUG] Attempting directory change to '" << dir << "'.\n";
+    // std::cout << "[xcd][DEBUG] Attempting directory change to '" << dir << "'.\n";
     if (std::filesystem::is_directory(std::filesystem::path(dir))) {
-        std::cout << "[xcd][DEBUG] Directory is valid, entering `xcddir(const char* path = \"" << dir << "\")`.\n";
+        // std::cout << "[xcd][DEBUG] Directory is valid, entering `xcddir(const char* path = \"" << dir << "\")`.\n";
         std::cout << "~$$;cd;" << dir << "\n";
         return true;
     }
 
-    std::cout << "[xcd][DEBUG] Attempted '" << dir << "'.\n";
+    // std::cout << "[xcd][DEBUG] Attempted '" << dir << "'.\n";
     return false;
 }
 
 bool cdToAlias(std::string dir, const std::unordered_map<std::string, std::string> &config, const std::vector<std::string> &hidden) {
-    std::cout << "[xcd][DEBUG] haystacking '" << dir << "'.\n";
+    // std::cout << "[xcd][DEBUG] haystacking '" << dir << "'.\n";
     for (const auto &[alias, fdir] : config) {
         std::string front = dir.substr(0, alias.length() + 1);
-        std::cout << "[xcd][DEBUG] front: '" << front << "', alias: '" << (alias + "/") << "', dir: '" << dir << "'\n";
+        // std::cout << "[xcd][DEBUG] front: '" << front << "', alias: '" << (alias + "/") << "', dir: '" << dir << "'\n";
         if (front == alias + "/" || front == alias + "\\") {
-            std::cout << "[xcd][DEBUG] Evaluating alias with remaining path.\n";
+            // std::cout << "[xcd][DEBUG] Evaluating alias with remaining path.\n";
             std::filesystem::path currentPath(fdir);
             currentPath /= dir.substr(alias.length() + 1);
             return changeDirectory(currentPath.string());
         } else if (dir == alias) {
-            std::cout << "[xcd][DEBUG] Evaluating alias directly.\n";
+            // std::cout << "[xcd][DEBUG] Evaluating alias directly.\n";
             return changeDirectory(fdir);
         }
     }
@@ -152,7 +152,7 @@ int main(int argc, const char **argv) {
         configData = ss.str();
     } else {
         std::cout << "[xcd] Configuration file \"xcd/xcd_conf.cf\" not found.\n";
-        std::cout << "[xcd][DEBUG] Searching '" << config << "'.\n";
+        // std::cout << "[xcd][DEBUG] Searching '" << config << "'.\n";
         return 1;
     }
 
