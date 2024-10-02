@@ -10,6 +10,8 @@ A drop-in replacement for the cd command allowing you to not only change directo
 2. Run make (alternatively compile main.cpp any way you want, just make sure the output is named "xcd-a")
 3. Add to your environment variables/path
 
+NOTE: The shell command to use this on linux is not setup and xcd is also not tested on any linux distro, use at your own risk (and sanity)
+
 ### xcd setup
 
 xcd has setup too! you need a config file to use xcd. To do this, create a directory `xcd` in the same folder as the executable. Inside this folder, create a file `xcd_conf.cf`. That's it for setup!
