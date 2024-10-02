@@ -4,6 +4,15 @@ setlocal EnableDelayedExpansion
 set "lastLine="
 set "cline=dummyData"
 
+set "p_f=false"
+if "%~1"=="-l" set "p_f=true"
+if "%~1"=="--list" set "p_f=true"
+
+if "%p_f%"=="true" (
+    "%~dp0xcd-a.exe" %*
+    exit /b
+)
+
 for /f "delims=" %%i in ('"%~dp0xcd-a.exe" %*') do (
     set "cline=%%i"
     if "!cline:~0,7!"=="~$$;cd;" (
