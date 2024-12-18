@@ -58,7 +58,7 @@ inline int getConsoleWidth() {
     struct winsize w;
     int columns = -1;
 
-    if (ioctl(STDOUT_FILENO, TIoCGWINSZ, &w) == 0) {
+    if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &w) == 0) {
         columns = w.ws_col;
     }
 
@@ -137,7 +137,7 @@ int main(int argc, const char **argv) {
     path.assign(str, len);
 
     std::filesystem::path exePath(path);
-    exePath /= "../xcd";
+    exePath = exePath.parent_path() / "xcd";
 
     std::filesystem::path config = exePath;
     config /= "xcd_conf.cf";
@@ -152,7 +152,7 @@ int main(int argc, const char **argv) {
         configData = ss.str();
     } else {
         std::cout << "[xcd] Configuration file \"xcd/xcd_conf.cf\" not found.\n";
-        // std::cout << "[xcd][DEBUG] Searching '" << config << "'.\n";
+        std::cout << "[xcd][DEBUG] Searching '" << config << "'.\n";
         return 1;
     }
 
